@@ -1,6 +1,7 @@
-import { useState } from 'react'
 import './App.css'
 import { Item } from './components/Item'
+import { useItems } from './hooks/useItems'
+import { useSEO } from './hooks/useSEO'
 
 export type ItemId = `${string}-${string}-${string}-${string}-${string}`
 
@@ -10,21 +11,13 @@ export interface Item {
     text: string
 }
 
-/*const INITIAL_ITEMS: Item[] = [
-    {
-        id: crypto.randomUUID(),
-        timestamp: Date.now(),
-        text: 'Videojuegos',
-    },
-    {
-        id: crypto.randomUUID(),
-        timestamp: Date.now(),
-        text: 'Libros',
-    }
-] */
-
 function App() {
+    const { items, addItem, removeItem } = useItems();
 
+    useSEO({
+        title: `[${items.length}] Prueba técnica de React`,
+        description:'Añadir y eliminar elementos de una lista'
+    })
     
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
@@ -34,19 +27,21 @@ function App() {
         const isInput = input instanceof HTMLInputElement
         if (!isInput || input == null) return
 
-        
+        addItem(input.value)
 
         input.value = ''
-
     }
 
-    
+    const createHandleRemoveItem = (id: ItemId) => () => {
+        removeItem(id)
+    }
 
 return (
     <main>
         <aside>
             <h1>Prueba técnica de React</h1>
             <h2>Añadir y eliminar elementos de una lista</h2>
+
             <form onSubmit={handleSubmit} aria-label='Añadir elementos a la lista'>
                 <label>
                     Elemento a introducir:
@@ -71,11 +66,14 @@ return (
                     ) : (
                         <ul>{
                         items.map((item) => {
-                            return <Item
+                            return (
+                            <Item
                             {...item}
                             handleClick={createHandleRemoveItem(item.id)}
                             key={item.id} />
-                        })}</ul>
+                        )
+                        })
+                        }</ul>
                     )
                 }
         </section>

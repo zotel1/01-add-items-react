@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-export function useSeo (
+export function useSEO (
     { title, description }:
     { title: string, description: string }
 ) {
