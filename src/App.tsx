@@ -72,7 +72,11 @@ function App() {
                         return (
                             <li key={item.id}>
                                 {item.text}
-                                <button>
+                                <button onClick={() => {
+                                    setItems(prevItems => {
+                                        return prevItems.filter(currentItem => currentItem.id !== item.id)
+                                    })
+                                }}>
                                     Eliminar elemento
                                 </button>
                             </li>
