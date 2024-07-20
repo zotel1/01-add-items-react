@@ -5,6 +5,7 @@ import { render, screen } from '@testing-library/react';
 import App from '../src/App'
 
 describe('App />', () => {
+
     test('Añadir items y eliminarlos', async() => {
         const user = userEvent.setup()
 
@@ -28,7 +29,6 @@ describe('App />', () => {
         // Asegurar que el elemento se ha agregado
         const list = screen.getByRole('list')
         expect(list).toBeDefined()
-
         expect(list.childNodes.length).toBe(1)
 
         // Asegurarnos de que lo podemos borrar
