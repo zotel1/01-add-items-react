@@ -38,5 +38,8 @@ describe('App />', () => {
 
         await user.click(removeButton!)
 
+        const noResults = screen.getByText('No hay elementos en la lista.')
+        expect(noResults).toBeDefined
+
     })
     })
