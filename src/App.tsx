@@ -32,6 +32,18 @@ function App() {
         const isInput = input instanceof HTMLInputElement
         if (!isInput || input == null ) return
 
+        const newItem: Item = {
+            id: crypto.randomUUID(),
+            text: input.value,
+            timestamp: Date.now()
+        }
+
+        setItems((prevItems) => {
+            return [...prevItems, newItem]
+        })
+
+        input.value = ''
+
     }
 
   return (
