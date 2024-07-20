@@ -76,16 +76,22 @@ return (
             <h2>Lista de elementos</h2>
             <ul>
                 {
-                    items.map((item) => {
-                        return (
-                        <li key={item.id}>
-                            {item.text}
-                            <button onClick={createHandleRemoveItem(item.id)}>
-                                Eliminar elemento
+                    items.length === 0 ? (
+                        <p>
+                            <strong>No hay elementos en la lista.</strong>
+                        </p>
+                    ) : (
+                        items.map((item) => {
+                            return (
+                            <li key={item.id}>
+                                {item.text}
+                                <button onClick={createHandleRemoveItem(item.id)}>
+                                    Eliminar elemento
                                 </button>
                             </li>
-                        )
-                    })
+                            )
+                        })
+                    )
                 }
             </ul>
         </section>
