@@ -74,13 +74,14 @@ return (
         </aside>
         <section>
             <h2>Lista de elementos</h2>
-            <ul>
+            
                 {
                     items.length === 0 ? (
                         <p>
                             <strong>No hay elementos en la lista.</strong>
                         </p>
                     ) : (
+                        <ul>{
                         items.map((item) => {
                             return (
                             <li key={item.id}>
@@ -90,10 +91,9 @@ return (
                                 </button>
                             </li>
                             )
-                        })
+                        })}</ul>
                     )
                 }
-            </ul>
         </section>
     </main>
 )
