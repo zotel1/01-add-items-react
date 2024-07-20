@@ -67,10 +67,18 @@ function App() {
           <section>
             <h2>Lista de elementos</h2>
             <ul>
-                <li>Videojuegos 🎮</li>
-                <li>Libros</li>
-                <li>Series</li>
-                <li>Películas</li>
+                {
+                    items.map((item) => {
+                        return (
+                            <li key={item.id}>
+                                {item.text}
+                                <button>
+                                    Eliminar elemento
+                                </button>
+                            </li>
+                        )
+                    })
+                }
             </ul>
           </section>
     </main>
