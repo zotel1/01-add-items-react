@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import './App.css'
+import { Item } from './components/Item'
 
-type ItemId = `${string}-${string}-${string}-${string}-${string}`
+export type ItemId = `${string}-${string}-${string}-${string}-${string}`
 
 interface Item {
     id: ItemId
@@ -83,14 +84,10 @@ return (
                     ) : (
                         <ul>{
                         items.map((item) => {
-                            return (
-                            <li key={item.id}>
-                                {item.text}
-                                <button onClick={createHandleRemoveItem(item.id)}>
-                                    Eliminar elemento
-                                </button>
-                            </li>
-                            )
+                            return <Item
+                            {...item}
+                            handleClick={createHandleRemoveItem(item.id)}
+                            key={item.id} />
                         })}</ul>
                     )
                 }
